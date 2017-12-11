@@ -20,23 +20,12 @@ def distribute(data: []):
 
 
 prevBanks = []
-cycles = 1
-flag = False
-banks = input("Banks: ").split("\t")
-for index in range(len(banks)):
-    banks[index] = int(banks[index])
-prevBanks.append(banks)
+banks = list(map(int, input("Banks: ").split("\t")))
 
-while not flag:
+while banks not in prevBanks:
+    prevBanks.append(banks)
     banks = distribute(banks)
 
-    # Check if we've seen this configuration before
-    for prevBank in prevBanks:
-        if prevBank == banks:
-            print(prevBanks)
-            print(prevBank)
-            print(cycles)
-            flag = True
-            break
-    prevBanks.append(banks)
-    cycles += 1
+print(prevBanks)
+print(len(prevBanks))
+print(len(prevBanks) - prevBanks.index(banks))
