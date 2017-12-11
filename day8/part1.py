@@ -1,3 +1,7 @@
+overall_largest = 0
+registers = {}
+
+
 def change_value(register: str, instruction: str, change: int):
     if register not in registers:
         registers[register] = 0
@@ -5,6 +9,9 @@ def change_value(register: str, instruction: str, change: int):
         registers[register] += change
     else:
         registers[register] -= change
+    global overall_largest
+    if registers[register] > overall_largest:
+        overall_largest = registers[register]
 
 
 def get_value(register: str):
@@ -14,7 +21,6 @@ def get_value(register: str):
         return 0
 
 
-registers = {}
 with open("part1.txt", "r") as file:
     for row in file:
         row = row.strip().split(" ")
@@ -30,3 +36,4 @@ with open("part1.txt", "r") as file:
         if registers[register] > largest:
             largest = registers[register]
     print(largest)
+    print(overall_largest)
