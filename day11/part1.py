@@ -1,5 +1,5 @@
 with open("data.txt", "r") as file:
-    x, y, z = 0, 0, 0
+    x, y, z, furthest = 0, 0, 0, 0
 
     for step in file.readline().strip().split(","):
         if step == "n":
@@ -20,4 +20,6 @@ with open("data.txt", "r") as file:
         elif step == "nw":
             y += 1
             x -= 1
-    print((abs(x) + abs(y) + abs(z)) / 2)
+        if (abs(x) + abs(y) + abs(z)) / 2 > furthest:
+            furthest = (abs(x) + abs(y) + abs(z)) / 2
+    print(furthest)
