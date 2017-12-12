@@ -3,10 +3,9 @@ with open("part1.txt", "r") as file:
 
     ignore = False
     garbage = False
-    open = 0
-    close = 0
     score = 0
     curr_depth = 0
+    removed = 0
     for char in data:
         if garbage:
             if ignore:
@@ -16,6 +15,8 @@ with open("part1.txt", "r") as file:
                 ignore = True
             elif char == ">":  # end garbage
                 garbage = False
+            else:
+                removed += 1
         else:
             if char == "{":  # open group
                 curr_depth += 1
@@ -25,3 +26,4 @@ with open("part1.txt", "r") as file:
             elif char == "<":  # start garbage
                 garbage = True
     print(score)
+    print(removed)
